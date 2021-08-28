@@ -1,0 +1,57 @@
+<template name="siteHeader">
+
+	<div class="site-bg site-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="site-header row">
+						<a class="brand col-xs-12 col-md-6" href="{{pathFor 'home'}}">
+							<img src="/img/logo/logo5.png" alt="{{t9n 'Site Name'}}"/>
+						</a>
+						<h3 class="slogan col-xs-12 col-md-6">{{t9n 'Slogan'}}</h3>
+					</div>
+					<div class="site-intro hidden-xs hidden-sm">
+						{{#if currentPath 'home'}}
+							<h1>Впервые в Украине!</h1>
+							<h4>Биржа для студентов, преподавателей, репетиторов и всех, кто зарабатывает написанием студенческих работ на заказ и консультациями.</h4>
+						{{/if}}
+						{{#if currentPath 'entrySignIn'}}
+							<h1>Добро пожаловать!</h1>
+							<h4>Мы рады, что Вы выбрали нашу биржу для решения своих задач. Обещаем и впредь прикладывать максимум усилий, чтобы сохранить Вашу лояльность.</h4>
+						{{/if}}
+						{{#if currentPath 'entrySignUp'}}
+							<h1>Присоединяйтесь!</h1>
+							<h4>На нашей бирже уже зарегистрировано <strong>{{statistics.studentsCount}} студентов</strong><br/>и <strong>{{statistics.authorsCount}} авторов</strong>, которыми на данный момент успешно выполнено <strong>{{statistics.ordersCount}} заказов</strong>.</h4>
+						{{/if}}
+						{{#if currentPath 'entryForgotPassword'}}
+							<h1>Не можете войти в Личный Кабинет?</h1>
+							<h4>Если Вы забыли пароль, пожалуйста, воспользуйтесь формой на этой странице. Если Вы забыли свой электронный адрес, пожалуйста, <a href="{{pathFor 'contacts'}}">свяжитесь с нами</a>.</h4>
+							<h4>Если Вы еще не зарегистрированы на нашей бирже, Вы можете <a href="{{pathFor 'entrySignUp'}}">сделать это прямо сейчас</a>.</h4>
+						{{/if}}
+						{{#if currentPath 'entryResetPassword'}}
+							<h1>Восстановление доступа к Личному Кабинету</h1>
+							<h4>Чтобы установить новый пароль для входа в Ваш Личный Кабинет, пожалуйста, воспользуйтесь формой на этой странице.</h4>
+							<h4>Если Вы не хотите изменять свой пароль, Вы можете просто покинуть эту страницу.</h4>
+						{{/if}}
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="entry transparent-panel">
+						{{> UI.contentBlock}}
+					</div>
+				</div>
+			</div>
+		</div>
+		{{#if currentPath 'home'}}
+		<div class="site-mission transparent-panel transparent-black col-md-6">
+			<ul>
+				<li><h3>{{t9n 'Mission 1'}}</h3></li>
+				<li><h3>{{t9n 'Mission 2'}}</h3></li>
+				<li><h3>{{t9n 'Mission 3'}}</h3></li>
+			</ul>
+			<a href="#main-features" class="btn btn-primary">{{t9n 'Learn more...'}}</a>
+		</div>
+		{{/if}}
+	</div>
+
+</template>

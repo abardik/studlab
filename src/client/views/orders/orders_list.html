@@ -1,0 +1,39 @@
+<template name="ordersList">
+
+	<div class="small-title">
+		<div class="container">
+
+			<h1 class="caption">{{title}}</h1>
+
+			<div class="row toolbar">
+				<div class="col-xs-12 form-group">
+					<label>{{t9n 'Science filter'}}:</label>
+					<select class="form-control science">
+						<option value="">Все предметы</option>
+						<option value="">Математика</option>
+						<option value="">Высшая математика</option>
+						<option value="">Физика</option>
+						<option value="">Химия</option>
+					</select>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container big-content">
+
+		{{> pager}}
+
+		<div class="col-xs-12 list orders-list">
+			{{#each orders}}
+				{{> ordersItem}}
+			{{/each}}
+		</div>
+
+		{{> pager}}
+		
+	</div>
+
+</template>

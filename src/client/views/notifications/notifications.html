@@ -1,0 +1,38 @@
+<template name="notificationsCounter">
+
+	<a href="#" class="notifications-counter dropdown-toggle clearfix" data-toggle="dropdown" data-target=".notifications-dropdown">
+		<span class="fa fa-fw fa-comment pull-left"></span>
+		{{#if notifications.length}}
+			<span class="label label-danger pull-right">{{notifications.length}}</span>
+		{{/if}}
+	</a>
+
+</template>
+
+
+<template name="notifications">
+
+  {{#if notifications.length}}
+    <!--<li class="header">{{t9n 'Total Notifications'}}: <b>{{notifications.length}}</b></li>-->
+    <li class="content"><ul>
+	    {{#each notifications}}
+	      {{> notification}}
+	    {{/each}}
+	  </ul></li>
+    <li class="header" style="text-align: right;"><a href="#" class="clear-notifications">{{t9n 'Clear Notifications'}}</a></li>
+  {{else}}
+    <li class="header" style="text-align: center;">{{t9n 'No notifications'}}</li>
+  {{/if}}
+
+</template>
+
+
+<template name="notification">
+
+  <li class="notifications-item">
+    <a href="{{url}}">
+      <p class="clearfix" style="font-size: 100%"><img class="pull-left" src="{{photoPath}}{{getUserPhoto}}"/><a href="{{pathFor 'userPage' _id=userId}}">{{userName}}</a> {{text}}<br/><small>{{localDateTime submitted}}</small></p>
+    </a>
+  </li>
+
+</template>

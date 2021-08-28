@@ -1,0 +1,132 @@
+<template name="dashboardProfile">
+
+	<div id="profile" class="account-page">
+
+		<div class="visible-xs big-title">
+
+			{{#if eq _id currentUser._id}}
+				<input type="file" class="hidden"/>
+				<a href="#" class="load-photo" title="{{t9n 'Upload Photo'}}">
+					<img class="img-circle img-responsive big-photo" src="{{photoPath}}{{getProfilePhoto}}"/>
+					<h3 class="hint">{{t9n 'Upload Photo'}}</h3>
+				</a>
+			{{else}}
+				<img class="img-circle img-responsive big-photo" src="{{photoPath}}{{getProfilePhoto}}"/>
+			{{/if}}
+
+			<h2>{{profile.name}}</h2>
+			<p>{{t9n role}}</p>
+			<a class="btn btn-primary new-order" href="{{pathFor 'dashboard' tab='orders' ext='add'}}">{{t9n 'New Order'}}</a>
+
+			<div class="opacity-panel">
+				<div class="opacity-content">
+					<div class="col-xs-6" style="text-align: left">
+						{{> rating stars=getUserStars}}
+						<!--{{t9n 'Total'}} {{dataUser.rating}} {{t9n 'stars'}}-->
+					</div>
+					<div class="col-xs-6">
+						<div class="pull-right online-status-container">{{> onlineStatus}}</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<h1 class="hidden-xs content-title">
+			{{#if eq _id currentUser._id}}{{t9n 'My Profile'}}{{else}}{{#if isAuthor}}{{t9n 'Author Profile'}}{{else}}{{t9n 'Customer Profile'}}{{/if}}{{/if}}
+		</h1>
+
+		<div class="col-xs-12 bg-white profile-content">
+
+			<h1 class="visible-xs content-title">
+				{{#if eq _id currentUser._id}}{{t9n 'My Profile'}}{{else}}{{#if isAuthor}}{{t9n 'Author Profile'}}{{else}}{{t9n 'Customer Profile'}}{{/if}}{{/if}}
+			</h1>
+
+			<div class="profile-list">
+
+				<h2 class="text-primary">{{t9n 'Private Info'}}</h2><br/>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td style="width: 40%">{{t9n 'Name'}}</td>
+							<td>{{profile.name}}</td>
+						</tr>
+						<tr>
+							<td>{{t9n 'Country'}}</td>
+							<td>{{getT9nListItem 'countries' profile.country}}</td>
+						</tr>
+						<tr>
+							<td>{{t9n 'City'}}</td>
+							<td>{{profile.city}}</td>
+						</tr>
+						<tr>
+							<td>{{t9n 'Birthday'}}</td>
+							<td>{{profile.birthday}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				{{#if isAuthor}}
+
+					<h2 class="text-primary">{{t9n 'Professional Info'}}</h2>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td style="width: 40%">{{t9n 'Degree'}}</td>
+								<td>{{getT9nListItem 'degrees' profile.degree}}</td>
+							</tr>
+							<tr>
+								<td>{{t9n 'Academic Title'}}</td>
+								<td>{{getT9nListItem 'academicTitles' profile.academictitle}}</td>
+							</tr>
+							<tr>
+								<td>{{t9n 'University'}}</td>
+								<td>{{profile.college}}</td>
+							</tr>
+							<tr>
+								<td>{{t9n 'Post'}}</td>
+								<td>{{profile.post}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h2 class="text-primary">{{t9n 'Sciences'}}</h2>
+					<div class="row">
+						<div class="form-group col-xs-12 tags">
+							<div>
+								{{#each profile.sciences}}
+									<span class="tag label label-primary">{{getT9nListItem 'sciences' this}}</span>
+								{{else}}
+									<div>{{t9n 'Not specified'}}</div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
+					<h2 class="text-primary">{{t9n 'Languages'}}</h2>
+					<div class="row">
+						<div class="form-group col-xs-12 tags">
+							<div>
+								{{#each profile.languages}}
+									<span class="tag label label-primary">{{getT9nListItem 'languages' this}}</span>
+								{{else}}
+									<div>{{t9n 'Not specified'}}</div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
+					<h2 class="text-primary">{{t9n 'Biography'}}</h2>
+					<div>{{profile.description}}</div>
+
+				{{/if}}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</template>
+
+

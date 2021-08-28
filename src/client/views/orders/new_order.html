@@ -1,0 +1,62 @@
+<template name="newOrder">
+
+	{{#with currentUser}}
+
+		<div class="account-page">
+
+			<h1 class="hidden-xs content-title">
+				{{t9n 'New Order'}}
+			</h1>
+
+			<div class="col-xs-12 bg-white profile-content">
+
+				<h1 class="visible-xs">{{t9n 'New Order'}}</h1>
+
+				<form name="newOrder">
+
+					{{> appErrors}}
+
+					<div class="form-group">
+						<label>{{t9n 'Science'}}</label>
+						{{> scienceSelect}}
+					</div>
+					<div class="form-group">
+						<label>{{t9n 'Language'}}</label>
+						{{> languageSelect}}
+					</div>
+					<div class="form-group">
+						<label>Тема</label>
+						<input class="form-control" name="title" type="text" value="" placeholder="Тема"/>
+					</div>
+					<div class="form-group">
+						<label>Описание</label>
+						<textarea class="form-control" name="message" rows="3" placeholder="Описание"></textarea>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary submit">Создать</button>
+						<button type="button" class="btn btn-default cancel">Отмена</button>
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	{{/with}}
+
+</template>
+
+
+<template name="scienceSelect">
+
+	<input type="text" name="sciences" class="form-control sciences typeahead" placeholder="{{t9n 'Input or select'}}"/>
+
+</template>
+
+
+<template name="languageSelect">
+
+	<input type="text" name="languages" class="form-control languages typeahead" value="{{profile.languages}}" placeholder="{{t9n 'Input or select'}}"/>
+
+</template>

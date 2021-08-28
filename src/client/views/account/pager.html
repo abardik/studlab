@@ -1,0 +1,16 @@
+<template name="pager">
+
+	<div class="row pager">
+		<div class="col-xs-6">
+			<div class="row">
+				{{#if prevPath}}<a class="btn col-xs-12 prev" href="{{prevPath}}">&larr; Предыдущие</a>{{/if}}
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="row">
+				{{#if nextPath}}<a class="btn col-xs-12 next" href="{{nextPath}}">Следующие &rarr;</a>{{/if}}
+			</div>
+		</div>
+	</div>
+
+</template>

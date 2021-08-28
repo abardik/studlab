@@ -1,0 +1,42 @@
+.inner-addon {
+	position: relative;
+}
+.inner-addon.addon-left input {
+	padding-left: 30px;
+}
+.inner-addon.addon-left input.input-lg {
+	padding-left: 40px;
+}
+.inner-addon.addon-right input {
+	padding-right: 30px;
+}
+.inner-addon.addon-right input.input-lg {
+	padding-right: 40px;
+}
+.inner-addon .fa {
+	position: absolute;
+	pointer-events: none;
+	color: #ccc;
+	padding: 10px;
+}
+.inner-addon .fa.input-md {
+	font-size: 13px;
+	padding: 10px;
+}
+.inner-addon .fa.input-md.fa-lock {
+	font-size: 16px;
+}
+.inner-addon .fa.input-lg {
+	font-size: 18px;
+	padding: 12px 15px;
+}
+.inner-addon .fa.input-lg.fa-lock {
+	font-size: 22px;
+	padding: 9px 12px 9px 15px;
+}
+.inner-addon.addon-right .fa {
+	right: 10px;
+}
+.inner-addon.addon-right .fa.input-lg {
+	right: 18px;
+}

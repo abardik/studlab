@@ -1,0 +1,73 @@
+.bootstrap-tagsinput {
+	border-radius: 0;
+	width: 100%;
+}
+
+.twitter-typeahead {
+	display: block!important;
+	width: 100%!important;
+	margin-top: 5px;
+}
+
+.twitter-typeahead > .tt-input, .twitter-typeahead > .tt-hint {
+	width: 100%!important;
+}
+
+.tt-hint {
+  color: #ccc;
+}
+
+.tt-dropdown-menu {
+  width: auto;
+	max-width: 100%;
+	min-width: 50%;
+	max-height: 200px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	cursor: default;
+  margin-top: 12px;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+@media (max-width: 767px) {
+	.tt-dropdown-menu {
+		width: 100%;
+	}
+}
+
+.tt-dropdown-menu .header {
+  white-space: nowrap!important;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 10px 50px 3px 10px;
+}
+
+.tt-dropdown-menu .empty {
+  white-space: nowrap!important;
+	padding: 10px 50px 10px 20px;
+	font-style: italic;
+}
+
+.tt-suggestion {
+  padding: 3px 50px 3px 20px;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+  cursor: pointer;
+}
+
+.tt-suggestion p {
+  margin: 0;
+  white-space: nowrap!important;
+}
+
+.gist {
+  font-size: 14px;
+}

@@ -1,0 +1,143 @@
+<template name="dashboard">
+
+	{{#with dataUser}}
+
+		<div class="big-title hidden-xs {{setTitle ..}}">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-3">
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-9">
+						<div class="row big-caption">
+							<div class="col-xs-12 col-sm-8">
+								<h2>{{profile.name}}</h2>
+								<p>{{t9n role}}</p>
+							</div>
+							<div class="col-xs-12 col-sm-4 big-caption-buttons">
+								<a class="btn btn-primary new-order" href="{{pathFor 'dashboard' tab='orders' ext='add'}}">{{t9n 'New Order'}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="opacity-panel">
+				<div class="container">
+					<div class="row">
+						<div class="hidden-xs col-sm-4 col-md-3"></div>
+						<div class="col-xs-12 col-sm-8 col-md-9">
+							<div class="row opacity-content">
+								<div class="col-xs-6" style="text-align: left">
+									{{> rating stars=getUserStars}}
+									<!--{{t9n 'Total'}} {{dataUser.rating}} {{t9n 'stars'}}-->
+								</div>
+								<div class="col-xs-6">
+									<div class="pull-right online-status-container">{{> onlineStatus}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-4 col-md-3 big-sidebar transitional minimized">
+					{{> bigSidebar}}
+				</div>
+
+				<div class="col-xs-12 col-sm-8 col-md-9 big-content">
+					{{#unless ../dataTab}}
+						{{> dashboardProfile}}
+					{{/unless}}
+					{{#if eq ../dataTab 'orders'}}
+						{{> dashboardOrders}}
+					{{/if}}
+					{{#if eq ../dataTab 'reviews'}}
+						{{> dashboardReviews}}
+					{{/if}}
+					{{#if eq ../dataTab 'works'}}
+						{{> dashboardWorks}}
+					{{/if}}
+					{{#if eq ../dataTab 'settings'}}
+						{{#if eq ../dataExt 'profile'}}
+							{{> editProfile}}
+						{{/if}}
+						{{#if eq ../dataExt 'notifications'}}
+							{{> editNotifications}}
+						{{/if}}
+						{{#if eq ../dataExt 'security'}}
+							{{> editSecurity}}
+						{{/if}}
+					{{/if}}
+				</div>
+
+			</div>
+		</div>
+
+	{{/with}}
+
+</template>
+
+
+<template name="dashboardOrders">
+
+	{{#if eq ../dataExt 'add'}}
+		{{> newOrder}}
+	{{else}}
+		{{#if showOrders}}
+			<div id="orders">
+				<h1 class="hidden-xs">{{t9n 'Orders'}}: {{getOrdersTitle ../dataExt}}</h1>
+				<div class="col-xs-12 list orders-list">
+					{{#each ../dataOrders}}
+						{{> ordersItem}}
+					{{else}}
+						<p class="row alert bg-info">{{t9n 'No orders yet'}}</p>
+					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+	{{/if}}
+
+</template>
+
+
+<template name="dashboardReviews">
+
+	<div id="reviews">
+		<h1 class="hidden-xs">{{t9n 'Reviews'}}</h1>
+		{{#if neq _id currentUser._id}}
+			{{> newReview}}
+		{{/if}}
+		<div class="col-xs-12 list reviews-list">
+			{{#each reviews}}
+				{{> reviewsItem}}
+			{{else}}
+				<p class="row alert bg-info">{{t9n 'No reviews yet'}}</p>
+			{{/each}}
+		</div>
+	</div>
+
+</template>
+
+
+<template name="dashboardWorks">
+
+	{{#if isAuthor}}
+		<div id="works">
+			<h1 class="hidden-xs">{{t9n 'Works'}}</h1>
+			<div class="col-xs-12 list works-list">
+				{{#each ../dataWorks}}
+				{{else}}
+					<p class="row alert bg-info">{{t9n 'No works yet'}}</p>
+				{{/each}}
+			</div>
+		</div>
+	{{/if}}
+
+</template>

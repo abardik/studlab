@@ -1,0 +1,65 @@
+<template name="mainNavbar">
+
+	{{#with currentUser}}
+
+		<nav class="col-xs-12 navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<ul class="nav pull-left">
+					<li class="hidden-xs brand">
+						<img src="/img/logo/logo5.png"/>
+					</li>
+					<li>
+						<a href="{{pathFor 'dashboard' tab=''}}">
+							<span class="visible-xs fa fa-fw fa-home"></span>
+							<span class="hidden-xs">{{t9n 'Home'}}</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{pathFor 'home'}}">
+							<span class="visible-xs fa fa-fw fa-users"></span>
+							<span class="hidden-xs">{{t9n 'Authors'}}</span>
+						</a>
+					</li>
+					{{#if isAuthor}}
+					<li>
+						<a href="{{pathFor 'ordersList'}}">
+							<span class="visible-xs fa fa-fw fa-bars"></span>
+							<span class="hidden-xs">{{t9n 'Orders'}}</span>
+						</a>
+					</li>
+					{{else}}
+					<li>
+						<a href="{{pathFor 'dashboard' tab='orders' ext='add'}}">
+							<span class="visible-xs fa fa-fw fa-plus"></span>
+							<span class="hidden-xs">{{t9n 'New Order'}}</span>
+						</a>
+					</li>
+					{{/if}}
+				</ul>
+				<ul class="nav pull-right">
+					<li>{{> notificationsCounter}}</li>
+					<li class="dropdown pull-right navbar-photo">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="img-circle" src="{{photoPath}}{{getProfilePhoto}}"/></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="{{pathFor 'dashboard'}}">{{t9n 'Dashboard'}}</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">{{t9n 'Settings'}}</li>
+							<li><a href="{{pathFor 'dashboard' tab='settings' ext='profile'}}">{{t9n 'Edit Profile'}}</a></li>
+							<li><a href="{{pathFor 'dashboard' tab='settings' ext='notifications'}}">{{t9n 'Notifications'}}</a></li>
+							<li><a href="{{pathFor 'dashboard' tab='settings' ext='security'}}">{{t9n 'Security'}}</a></li>
+							<li class="divider"></li>
+							<li><a href="{{pathFor 'entrySignOut'}}">{{t9n 'signOut'}}</a></li>
+						</ul>
+					</li>
+				</ul>
+				<div class="dropdown notifications-dropdown">
+				  <ul class="notifications dropdown-menu pull-right">
+				  	{{> notifications}}
+				  </ul>
+				</div>
+			</div>
+		</nav>
+
+	{{/with}}
+
+</template>

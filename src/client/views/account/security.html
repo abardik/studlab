@@ -1,0 +1,56 @@
+<template name="editSecurity">
+
+	{{#with currentUser}}
+
+		<div id="security" class="account-page">
+
+			<h1 class="hidden-xs content-title">
+				{{t9n 'Security'}}
+			</h1>
+
+			<div class="col-xs-12 bg-white profile-content">
+
+				<h1 class="visible-xs">{{t9n 'Security'}}</h1>
+
+				<form name="editSecurity">
+
+					<div class="profile-list">
+
+						<h2 class="text-primary">{{t9n 'Change Password'}}</h2>
+
+						{{> appErrors}}
+
+						<div class="row">
+							<div class="form-group col-xs-6">
+								<label>{{t9n 'Old Password'}}</label>
+								<input type="password" name="oldpassword" class="form-control" value=""/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-xs-6">
+								<label>{{t9n 'New Password'}}</label>
+								<input type="password" name="newpassword" class="form-control" value=""/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-xs-6">
+								<label>{{t9n 'Confirm New Password'}}</label>
+								<input type="password" name="confirmpassword" class="form-control" value=""/>
+							</div>
+						</div>
+
+					</div>
+
+					<hr/>
+					<button type="submit" class="btn btn-primary submit">{{t9n 'Save'}}</button>
+					<a href="{{pathFor 'dashboard'}}" class="btn btn-default">{{t9n 'Cancel'}}</a>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	{{/with}}
+
+</template>

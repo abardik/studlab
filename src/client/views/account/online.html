@@ -1,0 +1,13 @@
+<template name="onlineStatus">
+
+	{{#if status.online}}
+		<span class="online-status label label-success">{{t9n 'Online'}}</span>
+	{{else}}
+		{{#if status.lastLogin}}
+			<div class="small">{{t9n 'Last logon'}}:<br/>{{localDateTime status.lastLogin.date}}</div>
+		{{else}}
+			<span class="online-status label label-default">{{t9n 'Offline'}}</span>
+		{{/if}}
+	{{/if}}
+
+</template>

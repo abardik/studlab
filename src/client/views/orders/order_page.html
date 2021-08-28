@@ -1,0 +1,65 @@
+<template name="orderPage">
+
+	{{#with dataOrder}}
+
+		<div class="big-title {{setTitle ..}}">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-xs-12 wizard">
+						<div class="col-xs-2 {{#if eq status 'new'}}current{{/if}}">{{t9n 'status.new'}}</div>
+						<div class="col-xs-2 {{#if eq status 'process'}}current{{/if}}">{{t9n 'status.process'}}</div>
+						<div class="col-xs-2 {{#if eq status 'done'}}current{{/if}}">{{t9n 'status.done'}}</div>
+						<div class="col-xs-2 {{#if eq status 'warranty'}}current{{/if}}">{{t9n 'status.warranty'}}</div>
+						<div class="col-xs-2 {{#if eq status 'closed'}}current{{/if}}">{{t9n 'status.closed'}}</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">Тема:<br/><h3>{{title}}</h3></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 buttons">
+						{{#if eq customerId currentUser._id}}
+						<a href="{{pathFor 'editOrder'}}" class="btn btn-primary pull-right edit-order">Редактировать заказ</a>
+						{{/if}}
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="container">
+
+			<ul class="nav nav-tabs">
+				<li class="{{#unless ../dataTab}}active{{/unless}}"><a href="{{pathFor 'orderPage'}}">{{t9n 'Details'}}</a></li>
+				<li class="{{#if eq ../dataTab 'offers'}}active{{/if}}"><a href="{{pathFor 'orderPage' _id=_id tab='offers'}}">{{t9n 'Offers'}}&nbsp;<span class="badge badge-info">{{offersCount}}</span></a></li>
+				<li class="{{#if eq ../dataTab 'comments'}}active{{/if}}"><a href="{{pathFor 'orderPage' _id=_id tab='comments'}}">{{t9n 'Comments'}}&nbsp;<span class="badge badge-info">{{commentsCount}}</span></a></li>
+			</ul>
+
+			<div class="tab-content">
+
+				<div id="details" class="tab-pane order-details {{#unless ../dataTab}}active{{/unless}}">
+					<div class="row"><div class="col-xs-4 col-md-2">Предмет:</div><div class="col-xs-8 col-md-10">{{science}}</div></div>
+					<div class="row"><div class="col-xs-4 col-md-2">Срок:</div><div class="col-xs-8 col-md-10">{{localDate submitted}}</div></div>
+					<div class="row"><div class="col-xs-4 col-md-2">Статус:</div><div class="col-xs-8 col-md-10">{{getStatusName status}}</div></div>
+					<div class="row"><div class="col-xs-4 col-md-2">Заказчик:</div><div class="col-xs-8 col-md-10"><a href="{{pathFor 'userPage' _id=customerId}}">{{customerName}}</a></div></div>
+					<div class="row"><div class="col-xs-4 col-md-2">Автор:</div><div class="col-xs-8 col-md-10"><a href="{{pathFor 'userPage' _id=authorId}}">{{authorName}}</a></div></div>
+					<div class="row"><div class="col-xs-4 col-md-2">Описание:</div><div class="col-xs-8 col-md-10">{{#if message}}{{message}}{{else}}Нет описания.{{/if}}</div></div>
+				</div>
+
+				<div id="offers" class="tab-pane order-offers {{#if eq ../dataTab 'offers'}}active{{/if}}">
+					{{offersCount}}
+				</div>
+
+				<div id="comments" class="tab-pane order-comments {{#if eq ../dataTab 'comments'}}active{{/if}}">
+					{{> orderComments}}
+				</div>
+
+			</div>
+
+		</div>
+
+	{{/with}}
+
+</template>

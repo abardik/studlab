@@ -1,0 +1,43 @@
+<template name="siteFooter">
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-3">
+					<a href="{{pathFor 'home'}}">
+						<img class="logo" src="/img/logo/logo5.png"/>
+					</a>
+					<div class="copyright">&copy; 2014 {{t9n 'Site Name'}}</div>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<h4>{{t9n 'Applications'}}</h4>
+					<ul class="footer-links">
+						<!--<li><a href="http://studlab.com.ua/download/Studlab.apk">iOS</a></li>-->
+						<li><a href="http://studlab.com.ua/download/Studlab.apk">Android</a></li>
+						<li><a href="http://studlab.com.ua/download/Studlab.xap">Windows Phone</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<h4>{{t9n 'Information'}}</h4>
+					<ul class="footer-links">
+						<li><a href="{{pathFor 'home'}}">{{t9n 'Homepage'}}</a></li>
+						<li><a href="{{pathFor 'privacy'}}">{{t9n 'Privacy'}}</a></li>
+						<li><a href="{{pathFor 'terms'}}">{{t9n 'terms'}}</a></li>
+						<li><a href="{{pathFor 'contacts'}}">{{t9n 'Our Contacts'}}</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<h4>{{t9n 'Social'}}</h4>
+					<ul class="list-unstyled social-icons">
+						<li><a href="callto:studlab?chat" data-original-title="Skype" class="skype" title="Skype"></a></li>
+						<li><a target="_blank" href="mailto:info@studlab.com.ua" data-original-title="Email" class="email" title="Email"></a></li>
+						<li><a target="_blank" href="http://vk.com/studlabinfo" data-original-title="VK" class="vk" title="VK"></a></li>
+						<li><a target="_blank" href="https://twitter.com/StudlabInfo" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
+						<li><a target="_blank" href="https://www.facebook.com/pages/Studlab/542648305810451" data-original-title="Facebook" class="facebook" title="Facebook"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</template>

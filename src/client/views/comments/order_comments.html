@@ -1,0 +1,17 @@
+<template name="orderComments">
+
+	{{#if currentUser}}
+		{{> newComment}}
+	{{else}}
+		<p>{{t9n 'Comment Prompt'}}</p>
+	{{/if}}
+
+	<div class="col-xs-12 list comments-list">
+		{{#each comments}}
+			{{> comment}}
+		{{else}}
+			<p>{{t9n 'No comments yet'}}</p>
+		{{/each}}
+	</div>
+
+</template>

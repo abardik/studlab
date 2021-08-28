@@ -1,0 +1,99 @@
+<template name="bigSidebar">
+
+	<a href="#" class="sidebar-toggler fa fa-fw fa-chevron-right" title="{{t9n 'Show sidebar'}}"></a>
+
+	<div class="sidebar-content">
+
+		<div class="clearfix small-caption">
+			{{#if eq _id currentUser._id}}
+				<input type="file" class="hidden"/>
+				<a href="#" class="hidden-xs load-photo" title="{{t9n 'Upload Photo'}}">
+					<img class="img-thumbnail img-responsive" src="{{photoPath}}{{getProfilePhoto}}"/>
+					<h3 class="hint">{{t9n 'Upload Photo'}}</h3>
+				</a>
+			{{else}}
+				<img class="hidden-xs img-thumbnail img-responsive" src="{{photoPath}}{{getProfilePhoto}}"/>
+			{{/if}}
+			<img class="visible-xs img-circle img-responsive pull-left" src="{{photoPath}}{{getProfilePhoto}}"/>
+			<div class="pull-left">
+				<p class="visible-xs small-title">{{profile.name}}</p>
+				<p class="visible-xs small pull-left">{{t9n role}}</p>
+			</div>
+		</div>
+
+		<ul class="nav nav-tabs nav-stacked">
+			<li class="hidden-xs heading">
+				<span>{{#if eq _id currentUser._id}}{{t9n 'About me'}}{{else}}{{#if isAuthor}}{{t9n 'About author'}}{{else}}{{t9n 'About customer'}}{{/if}}{{/if}}</span>
+			</li>
+			<li class="{{#unless ../dataTab}}active{{/unless}}">
+				<a href="{{pathFor getUserPath}}">
+					<span>{{t9n 'Profile'}}</span>
+				</a>
+			</li>
+			<li class="{{#if eq ../dataTab 'reviews'}}active{{/if}}">
+				<a href="{{pathFor getUserPath _id=_id tab='reviews'}}">
+					<span>{{t9n 'Reviews'}}</span>
+					{{#if reviewsCount}}<span class="label label-info pull-right">{{reviewsCount}}</span>{{/if}}
+				</a>
+			</li>
+			{{#if showOrders}}
+				<li class="heading">
+					<span>{{t9n 'Orders'}}</span>
+				</li>
+				{{#unless isAuthor}}{{#if eq _id currentUser._id}}
+				<li class="{{#if eq ../dataTab 'orders'}}{{#if eq ../dataExt 'add'}}active{{/if}}{{/if}}">
+					<a href="{{pathFor 'dashboard' tab='orders' ext='add'}}">
+						<span><strong>{{t9n 'New Order'}}...</strong></span>
+					</a>
+				</li>
+				{{/if}}{{/unless}}
+				{{> ordersLink orderStatus='process'}}
+				{{> ordersLink orderStatus='done'}}
+				{{> ordersLink orderStatus='warranty'}}
+				{{> ordersLink orderStatus='closed'}}
+			{{/if}}
+			{{#if isAuthor}}
+			<li class="{{#if eq ../dataTab 'works'}}active{{/if}}">
+				<a href="{{pathFor getUserPath _id=_id tab='works'}}">
+					<span class="">{{t9n 'Works'}}</span>
+					{{#if worksCount}}<span class="label label-info pull-right">{{worksCount}}</span>{{/if}}
+				</a>
+			</li>
+			{{/if}}
+			{{#if eq _id currentUser._id}}
+				<li class="heading">
+					<span>{{t9n 'Settings'}}</span>
+				</li>
+				<li class="{{#if eq ../dataTab 'settings'}}{{#if eq ../dataExt 'profile'}}active{{/if}}{{/if}}">
+					<a href="{{pathFor 'dashboard' tab='settings' ext='profile'}}">
+						<span>{{t9n 'Edit Profile'}}</span>
+					</a>
+				</li>
+				<li class="{{#if eq ../dataTab 'settings'}}{{#if eq ../dataExt 'notifications'}}active{{/if}}{{/if}}">
+					<a href="{{pathFor 'dashboard' tab='settings' ext='notifications'}}">
+						<span>{{t9n 'Notifications'}}</span>
+					</a>
+				</li>
+				<li class="{{#if eq ../dataTab 'settings'}}{{#if eq ../dataExt 'security'}}active{{/if}}{{/if}}">
+					<a href="{{pathFor 'dashboard' tab='settings' ext='security'}}">
+						<span>{{t9n 'Security'}}</span>
+					</a>
+				</li>
+			{{/if}}
+		</ul>
+
+	</div>
+
+</template>
+
+
+<template name="ordersLink">
+
+	<li class="{{#if eq ../../dataTab 'orders'}}{{#if eq ../../dataExt orderStatus}}active{{/if}}{{/if}}">
+		<a href="{{pathFor getUserPath _id=../_id tab='orders' ext=orderStatus}}">
+			<span>{{getOrdersTitle orderStatus}}</span>
+			{{#if getOrdersCount .. orderStatus}}<span class="label label-info pull-right">{{getOrdersCount .. orderStatus}}</span>{{/if}}
+		</a>
+	</li>
+
+</template>

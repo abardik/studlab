@@ -1,0 +1,10 @@
+<template name="reviewsItem">
+
+	<div class="row list-item bg-white reviews-item" id="{{_id}}">
+		<a href="{{pathFor 'userPage' _id=userId}}" class="pull-left"><img class="img-responsive img-circle list-item-avatar" src="{{photoPath}}{{getUserPhoto}}"/></a>
+		<p class="pull-left"><a class="author" href="{{pathFor 'userPage' _id=userId}}">{{userName}}</a><br/><span class="small">{{localDateTime submitted}}</span></p>
+		{{> rating stars=score}}
+		<p class="list-item-message">{{message}}</p>
+	</div>
+
+</template>

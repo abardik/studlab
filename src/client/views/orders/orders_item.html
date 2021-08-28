@@ -1,0 +1,32 @@
+<template name="ordersItem">
+
+	<a href="{{pathFor 'orderPage'}}" class="row list-item bg-white orders-item">
+		<b class="col-xs-12 list-item-header">{{title}}</b>
+		<div class="col-xs-12 col-sm-8 list-item-content">
+			<div><span>{{t9n 'Science'}}:</span> {{science}}</div>
+			<div><span>{{t9n 'Status'}}:</span> {{getStatusName status}}</div>
+			{{#if showCustomer ../../dataUser}}
+				<div><span>{{t9n 'Customer'}}:</span> <a href="{{pathFor 'userPage' _id=customerId}}">{{customerName}}</a></div>
+			{{/if}}
+			{{#if showAuthor ../../dataUser}}
+				<div><span>{{t9n 'Author'}}:</span> <a href="{{pathFor 'userPage' _id=authorId}}">{{authorName}}</a></div>
+			{{/if}}
+		</div>
+		<div class="col-xs-12 col-sm-4 list-item-buttons">
+			<div>
+				<a href="{{pathFor 'orderPage' _id=_id tab='offers'}}">
+					<small class="fa fa-fw fa-thumbs-o-up"></small>
+					<small>{{offersCount}}</small>
+					<small>{{t9n 'offers'}}</small>
+				</a>
+				<span class="link-separator"></span>
+				<a href="{{pathFor 'orderPage' _id=_id tab='comments'}}">
+					<small class="fa fa-fw fa-comments-o"></small>
+					<small>{{commentsCount}}</small>
+					<small>{{t9n 'comments'}}</small>
+				</a>
+			</div>
+		</div>
+	</a>
+
+</template>

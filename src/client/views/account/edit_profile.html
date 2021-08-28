@@ -1,0 +1,177 @@
+<template name="editProfile">
+
+	{{#with currentUser}}
+
+		<div id="profile" class="account-page">
+
+			<h1 class="hidden-xs content-title">
+				{{t9n 'My Profile'}}
+			</h1>
+
+			<div class="col-xs-12 bg-white profile-content">
+
+				<h1 class="visible-xs">{{t9n 'My Profile'}}</h1>
+
+				<form name="editProfile">
+
+					<div class="profile-list">
+
+						<h2 class="text-primary">{{t9n 'Private Info'}}</h2>
+
+						{{> appErrors}}
+
+						<div class="row">
+							<div class="form-group col-xs-12">
+								<label>{{t9n 'Name'}}</label>
+								<input type="text" name="name" class="form-control" value="{{profile.name}}"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6">
+								<label>{{t9n 'Country'}}</label>
+								{{> countryList}}
+							</div>
+							<div class="form-group col-xs-12 col-sm-6">
+								<label>{{t9n 'City'}}</label>
+								<input type="text" name="city" class="form-control" value="{{profile.city}}"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6">
+								<label>{{t9n 'Phone'}}</label>
+								<input type="text" name="phone" class="form-control" value="{{profile.phone}}"/>
+							</div>
+							<div class="form-group col-xs-12 col-sm-6">
+								<label>{{t9n 'Birthday'}}</label>
+								<input type="text" name="birthday" class="form-control" value="{{profile.birthday}}"/>
+							</div>
+						</div>
+
+						<h2 class="text-primary">{{t9n 'Photo'}}</h2>
+						<div class="row">
+							<div class="form-group col-xs-6 col-sm-3">
+								<input type="file" class="hidden"/>
+								<a href="#" class="load-photo" title="{{t9n 'Upload Photo'}}">
+									<img class="img-thumbnail img-responsive" src="{{photoPath}}{{getProfilePhoto}}"/>
+									<h4 class="hint">{{t9n 'Upload Photo'}}</h4>
+								</a>
+							</div>
+							{{#if profile.photo}}
+								<div class="form-group col-xs-6 col-sm-4">
+									<button type="button" class="btn btn-danger delete-photo">{{t9n 'Delete Photo'}}</button>
+								</div>
+							{{/if}}
+						</div>
+
+						{{#if isAuthor}}
+
+							<h2 class="text-primary">{{t9n 'Professional Info'}}</h2>
+							<div class="row">
+								<div class="form-group col-xs-12 col-sm-6">
+									<label>{{t9n 'Degree'}}</label>
+									{{> degreeList}}
+								</div>
+								<div class="form-group col-xs-12 col-sm-6">
+									<label>{{t9n 'Academic Title'}}</label>
+									{{> academicTitleList}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-xs-12 col-sm-6">
+									<label>{{t9n 'University'}}</label>
+									<input type="text" name="college" class="form-control" value="{{profile.college}}"/>
+								</div>
+								<div class="form-group col-xs-12 col-sm-6">
+									<label>{{t9n 'Post'}}</label>
+									<input type="text" name="post" class="form-control" value="{{profile.post}}"/>
+								</div>
+							</div>
+
+							<h2 class="text-primary">{{t9n 'Sciences'}}</h2>
+							<div class="row">
+								<div class="form-group col-xs-12">
+									{{> scienceList}}
+								</div>
+							</div>
+
+							<h2 class="text-primary">{{t9n 'Languages'}}</h2>
+							<div class="row">
+								<div class="form-group col-xs-12">
+									{{> languageList}}
+								</div>
+							</div>
+
+							<h2 class="text-primary">{{t9n 'Biography'}}</h2>
+							<div class="row">
+								<div class="form-group col-xs-12">
+									<textarea class="form-control" name="description" style="resize: vertical" rows="5">{{profile.description}}</textarea>
+								</div>
+							</div>
+
+						{{/if}}
+
+					</div>
+
+					<hr/>
+					<button type="button" class="btn btn-primary submit">{{t9n 'Save'}}</button>
+					<a href="{{pathFor 'dashboard'}}" class="btn btn-default">{{t9n 'Cancel'}}</a>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	{{/with}}
+
+</template>
+
+
+<template name="countryList">
+
+	<select name="country" class="form-control">
+		<option value=""></option>
+		{{#each getT9nList 'countries'}}
+			<option value="{{this.value}}" selected="{{eq this.value ../profile.country}}">{{this.text}}</option>
+		{{/each}}
+	</select>
+
+</template>
+
+
+<template name="degreeList">
+
+	<select name="degree" class="form-control">
+		<option value=""></option>
+		{{#each getT9nList 'degrees'}}
+			<option value="{{this.value}}" selected="{{eq this.value ../profile.degree}}">{{this.text}}</option>
+		{{/each}}
+	</select>
+
+</template>
+
+
+<template name="academicTitleList">
+
+	<select name="academictitle" class="form-control">
+		<option value=""></option>
+		{{#each getT9nList 'academicTitles'}}
+			<option value="{{this.value}}" selected="{{eq this.value ../profile.academictitle}}">{{this.text}}</option>
+		{{/each}}
+	</select>
+
+</template>
+
+
+<template name="scienceList">
+
+	<input type="text" name="sciences" class="form-control sciences tags-input-typeahead" placeholder="{{t9n 'Input or select'}}"/>
+
+</template>
+
+
+<template name="languageList">
+
+	<input type="text" name="languages" class="form-control languages tags-input-typeahead" value="{{profile.languages}}" placeholder="{{t9n 'Input or select'}}"/>
+
+</template>

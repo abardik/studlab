@@ -1,0 +1,30 @@
+<template name="pageHeader">
+
+	<div class="site-bg site-page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="site-header row">
+						<a class="brand col-xs-12 col-sm-6" href="{{pathFor 'home'}}">
+							<img src="/img/logo/logo5.png" alt="{{t9n 'Site Name'}}"/>
+						</a>
+						<h3 class="slogan col-xs-12 col-sm-6">{{t9n 'Slogan'}}</h3>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="entry-buttons">
+					  {{#if currentUser}}
+					  	<p class="hidden">{{t9n 'Welcome'}}</p>
+			        <a class="btn btn-primary" href="{{pathFor 'dashboard'}}">{{t9n 'signIn'}}</a>
+				      <a class="btn btn-danger" href="{{pathFor 'entrySignOut'}}">{{t9n "signOut"}}</a>
+					  {{else}}
+				      <a class="btn btn-success" href="{{pathFor 'entrySignIn'}}">{{t9n "sign"}}</a>
+				      <a class="btn btn-primary" href="{{pathFor 'entrySignUp'}}">{{t9n "signUp"}}</a>
+				  	{{/if}}
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>
